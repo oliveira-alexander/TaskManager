@@ -1,0 +1,24 @@
+unit Entity.Task;
+
+interface
+
+type
+  TTask = class
+    private
+      FTitulo: string;
+      FDescricao: string;
+      FInicio: TDateTime;
+      FTermino: TDateTime;
+
+
+
+      constructor Create;
+    public
+      class function New: TTask;
+      destructor Destroy; override;
+
+  end;
+
+implementation
+
+end.

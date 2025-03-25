@@ -1,0 +1,9 @@
+unit Service.Task;
+
+interface
+
+type
+
+implementation
+
+end.

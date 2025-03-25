@@ -1,0 +1,13 @@
+unit Service.Task;
+
+interface
+
+type
+  TServiceTask = class
+    private
+    public
+  end;
+
+implementation
+
+end.

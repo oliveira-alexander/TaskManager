@@ -1,0 +1,33 @@
+unit Controller.Main;
+
+interface
+
+type
+  TControllerMain = class
+    private
+      constructor Create;
+    public
+      class function New: TControllerMain;
+      destructor Destroy; override;
+  end;
+
+implementation
+
+{ TControllerMain }
+
+constructor TControllerMain.Create;
+begin
+
+end;
+
+destructor TControllerMain.Destroy;
+begin
+  inherited;
+end;
+
+class function TControllerMain.New: TControllerMain;
+begin
+  Result := Self.Create;
+end;
+
+end.

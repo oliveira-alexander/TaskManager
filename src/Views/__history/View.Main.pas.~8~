@@ -1,0 +1,50 @@
+unit View.Main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.DBCGrids, Vcl.ExtCtrls,
+  Vcl.Buttons, Controller.Main;
+
+type
+  TFrm_Main = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    dbgTasks: TDBCtrlGrid;
+    Panel5: TPanel;
+    MonthCalendar1: TMonthCalendar;
+    pnlBotoes: TPanel;
+    pnlBtnAdicionarTarefa: TPanel;
+    Shape1: TShape;
+    Panel8: TPanel;
+    btnAdicionarTarefa: TSpeedButton;
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+    FController: TControllerMain;
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_Main: TFrm_Main;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrm_Main.FormCreate(Sender: TObject);
+begin
+  FController := TControllerMain.New;
+end;
+
+procedure TFrm_Main.FormShow(Sender: TObject);
+begin
+  dbgTasks.DataSource := FController.DataSource;
+end;
+
+end.
