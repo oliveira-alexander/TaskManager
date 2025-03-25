@@ -1,0 +1,47 @@
+unit Controller.Main;
+
+interface
+
+uses
+  FireDAC.Comp.Client,
+  Data.DB,
+  Service.Task;
+
+type
+  TControllerMain = class
+    private
+      FService: TServiceTask;
+      FTable: TFDMemTable;
+      FDataSource: TDataSource;
+
+      constructor Create;
+    public
+      class function New: TControllerMain;
+      destructor Destroy; override;
+
+      property DataSource: TDataSource read FDataSource write FDataSource;
+  end;
+
+implementation
+
+{ TControllerMain }
+
+constructor TControllerMain.Create;
+begin
+  FTable := TFDMemTable.Create(nil);
+  FDataSource := TDataSource.Create(nil);
+
+  FDataSource.DataSet := FTable;
+end;
+
+destructor TControllerMain.Destroy;
+begin
+  inherited;
+end;
+
+class function TControllerMain.New: TControllerMain;
+begin
+  Result := Self.Create;
+end;
+
+end.

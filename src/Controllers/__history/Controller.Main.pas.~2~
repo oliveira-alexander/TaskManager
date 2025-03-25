@@ -1,0 +1,16 @@
+unit Controller.Main;
+
+interface
+
+type
+  TControllerMain = class
+    private
+      constructor Create;
+    public
+      class function New: TControllerMain;
+      destructor Destroy; override;
+  end;
+
+implementation
+
+end.

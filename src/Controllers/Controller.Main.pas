@@ -1,0 +1,70 @@
+unit Controller.Main;
+
+interface
+
+uses
+  FireDAC.Comp.Client,
+  Data.DB,
+  Service.Task;
+
+type
+  TControllerMain = class
+    private
+      FService: TServiceTask;
+      FTable: TFDMemTable;
+      FDataSource: TDataSource;
+
+      constructor Create;
+      procedure CreateTableFields;
+    public
+      class function New: TControllerMain;
+      destructor Destroy; override;
+
+      property DataSource: TDataSource read FDataSource write FDataSource;
+
+      procedure GetCurrentTasks(pDate: TDateTime);
+  end;
+
+implementation
+
+{ TControllerMain }
+
+constructor TControllerMain.Create;
+begin
+  FTable := TFDMemTable.Create(nil);
+  FDataSource := TDataSource.Create(nil);
+
+  FDataSource.DataSet := FTable;
+
+  CreateTableFields;
+end;
+
+destructor TControllerMain.Destroy;
+begin
+  inherited;
+end;
+
+procedure TControllerMain.GetCurrentTasks(pDate: TDateTime);
+begin
+
+end;
+
+class function TControllerMain.New: TControllerMain;
+begin
+  Result := Self.Create;
+end;
+
+procedure TControllerMain.CreateTableFields;
+begin
+  FTable.Close;
+
+  FTable.FieldDefs.Add('ID', ftInteger, 0);
+  FTable.FieldDefs.Add('TITULO', ftString, 100);
+  FTable.FieldDefs.Add('DESCRICAO', ftString, 2000);
+  FTable.FieldDefs.Add('INICIO', ftDateTime, 0);
+  FTable.FieldDefs.Add('TERMINO', ftDateTime, 0);
+
+  FTable.CreateDataSet;
+end;
+
+end.
