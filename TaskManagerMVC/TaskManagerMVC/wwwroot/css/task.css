@@ -1,0 +1,29 @@
+﻿.task-btn-menu {
+    margin-right: 10%;
+}
+
+.task-body{
+    background-color: lightyellow;
+    border: 1px solid gray;
+}
+
+.task-title {
+    font-weight: bolder;
+}
+
+.priority-normal {
+    background-color: yellow;
+}
+
+.priority-high {
+    background-color: red;
+}
+
+.priority-low {
+    background-color: blue;
+}
+
+.priority-indicator {
+    width: 2%;
+    height: 100%;
+}

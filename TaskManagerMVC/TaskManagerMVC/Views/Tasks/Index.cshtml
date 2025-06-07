@@ -1,0 +1,68 @@
+﻿@using TaskManagerMVC.DTOs
+@using TaskManagerMVC.Enums
+@model List<TaskGetDTO>
+
+@{
+    ViewData["Title"] = "Consulta de Tarefas";
+    var numeroItensLinha = 0;
+
+    string ValidarIndicadorPrioridade(TaskGetDTO task)
+    {
+        switch (task.Prioridade)
+        {
+            case Prioridade.Baixa: return "priority-low";
+            case Prioridade.Media: return "priority-normal";
+            case Prioridade.Alta: return "priority-high";
+            default:
+                return "priority-high";
+        }
+
+    }
+}
+
+<div class="mt-3">
+    <h1 class="text-center text-cute">Task Manager</h1>
+
+    <div class="row-cols-6 justify-content-end d-flex task-btn-menu">
+        <a class="btn btn-primary col-2" S asp-controller="Tasks" asp-action="Create"> Adicionar Tarefa</a>
+    </div>
+
+    @if (Model != null)
+    {
+        var i = 0;
+        @while (i < Model.Count)
+        {
+            <div class="row-cols-6 justify-content-center d-flex">
+                @while (numeroItensLinha < 3 && i < Model.Count)
+                {
+                    var task = Model[i];
+                    <div class="task-body col col-3 m-3 p-2 justify-content-start d-flex">
+                        <div class=" @(ValidarIndicadorPrioridade(task)) priority-indicator me-2"></div>
+                        <div class="w-100">
+
+                            <!-- Título e botões da task-->
+                            <div class="d-flex justify-content-between">
+                                <p class="task-title text-cute text-center text-danger">@task.Titulo</p>
+                                <form asp-controller="Tasks" method="get">
+                                    <ul class="d-flex list-unstyled">
+                                        <li class="m-1"><a class="btn btn-warning" asp-action="Update" asp-route-id="@task.ID">Alterar</a></li>
+                                        <li class="m-1"><a class="btn btn-danger" asp-action="Delete" asp-route-id="@task.ID">Excluir</a></li>
+                                    </ul>
+                                </form>
+                            </div>
+
+                            <!-- Dados da Task-->
+                            <p><span style="font-weight: bold">Assunto:</span> @task.Assunto</p>
+                            <p style="font-weight: bold">Descrição:</p>
+                            <p class="text-cute">@task.Descricao</p>
+                        </div>
+                    </div>
+                    i++;
+                    numeroItensLinha++;
+                }
+            </div>
+            numeroItensLinha = 0;
+        }
+    }
+</div>
+
